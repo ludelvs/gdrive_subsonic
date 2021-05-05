@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  web:
+    container_name: subsonic
+    build: .
+    ports:
+      - "4040:4040"
+    volumes:
+            #      - ./music:/music
+      - /home/ec2-user/google-drive:/music:shared
+      - podcast:/podcast
+      - playlist:/playlist
+      - subsonic:/subsonic
+    restart: always
+
+    cap_add:
+      - MKNOD
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    devices:
+      - /dev/fuse
+
+volumes_from:
+volumes:
+  subsonic:
+  playlist:
+  podcast:

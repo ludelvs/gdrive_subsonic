@@ -22,3 +22,23 @@ services:
     volumes:
       - "./google-drive-ocamlfuse_local_data:/mnt/gdrive:shared" # change the first path to where you want to store your local data to sync with google drive
       - "./google-drive-ocamlfuse_local_config:/config/.gdfuse/default" # change the first path to where you want to store your config data
+
+  web:
+    container_name: subsonic_gdrive
+    build: ./subsonic/
+    ports:
+      - "4040:4040"
+    links:
+      - google-drive-ocamlfuse
+    volumes:
+      - ./google-drive-ocamlfuse_local_data/music:/music:ro
+      - podcast:/podcast
+      - playlist:/playlist
+      - subsonic:/subsonic
+    restart: always
+
+volumes:
+  subsonic:
+  playlist:
+  podcast:
+
