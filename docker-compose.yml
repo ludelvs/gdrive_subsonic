@@ -2,6 +2,8 @@ version: '3'
 services:
   google-drive-ocamlfuse:
     container_name: google-drive-ocamlfuse
+    build:
+      context: .
     image: maltokyo/docker-google-drive-ocamlfuse:0.7.26 # this version is in sync with the official google-drive-ocamlfuse release, starting at 0.7.19
     restart: always
     environment:
