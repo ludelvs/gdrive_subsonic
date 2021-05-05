@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# see https://qiita.com/cabbage_lettuce/items/c4544b3e5cd28caf04bc
+
+URL=https://hooks.slack.com/services/xxxxxxxxxxxxx/xxxxxxxxx/xxxxxxxxxxxxxx
+curl -X POST -H "Content-type: application/json" --data '{"text":"Message from VPS : '"$@"'"}' "${URL}" -kLso /dev/null
+read
